@@ -3,6 +3,7 @@ module.exports = function(grunt) {
 
   require('./build/config-all-defaults.js')(grunt);
   require('./build/config-all-bump.js')(grunt);
+  require('./build/config-all-release.js')(grunt);
   require('./build/config-Plurals.js')(grunt);
 
 	grunt.loadNpmTasks('grunt-contrib-concat');

@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
   grunt.registerTask('Plurals', [ 'concat:Plurals', 'uglify:Plurals', 'jshint:Plurals', 'jasmine:Plurals' ]);
-  grunt.registerTask('release', [ 'Plurals', 'concat:Plurals-release' ]);
 
   var src = 'src/Smart/Plurals'
     , dest = 'dist'
