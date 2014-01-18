@@ -26,7 +26,7 @@
    *  Turkish
    */
   PluralRules.mapLanguageCodes('en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr', 'english');
-  PluralRules.defineRule('english', function PluralRule_english(value, choices) {
+  PluralRules.defineRule('english', function pluralRule_english(value, choices) {
     // singular used for 1
     // special cases for 0 and negative
     var singular = (value === 1);
@@ -44,7 +44,7 @@
    *  French, Brazilian Portuguese
    */
   PluralRules.mapLanguageCodes('fr,pt-br', 'french');
-  PluralRules.defineRule('french', function PluralRule_french(value, choices) {
+  PluralRules.defineRule('french', function pluralRule_french(value, choices) {
     // singular used for 0 and 1
     var singular = (value === 0 || value === 1);
     return (singular ? 0 : 1);
@@ -55,7 +55,7 @@
    *  Latvian
    */
   PluralRules.mapLanguageCodes('lv', 'latvian');
-  PluralRules.defineRule('latvian', function PluralRule_latvian(value, choices) {
+  PluralRules.defineRule('latvian', function pluralRule_latvian(value, choices) {
     // singular used for 1, 21, 31, 41... -- but not 11, 111, 211, 311, 411...
     // special case for 0
     var singular = (value % 10 === 1 && value % 100 != 11);
@@ -70,7 +70,7 @@
    *  Gaeilge (Irish)
    */
   PluralRules.mapLanguageCodes('ga', 'irish');
-  PluralRules.defineRule('irish', function PluralRule_irish(value, choices) {
+  PluralRules.defineRule('irish', function pluralRule_irish(value, choices) {
     // singular used for 1
     // special case for 2
     var singular = (value === 1);
@@ -85,7 +85,7 @@
    *  Romanian
    */
   PluralRules.mapLanguageCodes('ro', 'romanian');
-  PluralRules.defineRule('romanian', function PluralRule_romanian(value, choices) {
+  PluralRules.defineRule('romanian', function pluralRule_romanian(value, choices) {
     // singular used for 1
     // special case for 0 and numbers ending in 01-19 (0, 2-19, 101-119, 201-219...)
     var singular = (value === 1);
@@ -100,7 +100,7 @@
    *  Lithuanian
    */
   PluralRules.mapLanguageCodes('lt', 'lithuanian');
-  PluralRules.defineRule('lithuanian', function PluralRule_lithuanian(value, choices) {
+  PluralRules.defineRule('lithuanian', function pluralRule_lithuanian(value, choices) {
     // singular used for numbers ending in 1 (1, 21, 31, 41...)
     // special case for numbers ending in 12-19 (12-19, 112-119, 212-219...)
     var singular = (value % 10 === 1 && value % 100 != 11);
@@ -115,7 +115,7 @@
    *  Russian, Ukrainian, Serbian, Croatian
    */
   PluralRules.mapLanguageCodes('ru,uk,sr,hr', 'russian');
-  PluralRules.defineRule('russian', function PluralRule_russian(value, choices) {
+  PluralRules.defineRule('russian', function pluralRule_russian(value, choices) {
     // singular used for numbers ending in 1, except 11 (1, 21, 31...)
     // special case for numbers ending in 2-4, except 12-14 (2-4, 22-24, 32-34...)
     // numbers ending in 11-14 use plural (11-14, 111-114, 211-214...)
@@ -131,7 +131,7 @@
    *  Czech, Slovak
    */
   PluralRules.mapLanguageCodes('cs,sk', 'czech');
-  PluralRules.defineRule('czech', function PluralRule_czech(value, choices) {
+  PluralRules.defineRule('czech', function pluralRule_czech(value, choices) {
     // singular used for 1
     // special case for 2-4
     var singular = (value === 1);
@@ -146,7 +146,7 @@
    *  Polish
    */
   PluralRules.mapLanguageCodes('pl', 'polish');
-  PluralRules.defineRule('polish', function PluralRule_polish(value, choices) {
+  PluralRules.defineRule('polish', function pluralRule_polish(value, choices) {
     // singular used for 1
     // special case for numbers ending in 2-4, except for 12-14 (2-4, 22-24, 32-34...)
     var singular = (value === 1);
@@ -161,7 +161,7 @@
    *  Slovenian
    */
   PluralRules.mapLanguageCodes('sl', 'slovenian');
-  PluralRules.defineRule('slovenian', function PluralRule_slovenian(value, choices) {
+  PluralRules.defineRule('slovenian', function pluralRule_slovenian(value, choices) {
     // singular used for numbers ending in 01 (1, 101, 201...)
     // special case for numbers ending in 02 (2, 102, 202...)
     // special case for numbers ending in 03-04 (3-4, 103-104, 203-204...)
