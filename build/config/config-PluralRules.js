@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  grunt.registerTask('PluralRules', [ 'concat:PluralRules', 'uglify:PluralRules', 'jshint:PluralRules' ])
+  grunt.registerTask('PluralRules', [ 'concat:PluralRules', 'uglify:PluralRules', 'jshint:PluralRules', 'jasmine:PluralRules' ])
 
   var src = '../src/Smart/PluralRules'
     , dest = '../dist/PluralRules'
