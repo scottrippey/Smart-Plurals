@@ -1,22 +1,10 @@
 module.exports = function(grunt) {
-  grunt.registerTask('increment', [ 'release:INCREMENT' ]);
-  //grunt.registerTask('publish', [ 'release:INCREMENT' ]);
+  grunt.registerTask('increment', [ 'release', 'Plurals-release' ]);
   grunt.mergeConfig({
     release: {
       options: {
-        bump: false, add: false, commit: false, tag: false, push: false, npm: false
-      }
-      ,
-      'INCREMENT': {
-        options: {
-          bump: true
-        }
-      }
-      ,
-      'NPM-PUBLISH': {
-        options: {
-          npm: true
-        }
+        bump: true // We only want to bump
+        , add: false, commit: false, tag: false, push: false, pushTags: false, npm: false
       }
     }
   });
