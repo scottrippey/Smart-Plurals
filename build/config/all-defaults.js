@@ -1,5 +1,5 @@
 module.exports = function(grunt) {
-  grunt.registerTask('default', [ 'PluralRules' ]);
+  grunt.registerTask('default', [ 'Plurals' ]);
   grunt.registerTask('test', [ 'jasmine' ]);
 
   grunt.mergeConfig({

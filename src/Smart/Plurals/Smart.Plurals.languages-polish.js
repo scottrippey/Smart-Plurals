@@ -3,8 +3,8 @@
    * Slavic family
    *  Polish
    */
-  Smart.PluralRules.mapLanguageCodes('pl', 'polish');
-  Smart.PluralRules.defineRule('polish', function pluralRule_polish(value, choices) {
+  Smart.Plurals.mapLanguageCodes('pl', 'polish');
+  Smart.Plurals.defineRule('polish', function pluralRule_polish(value, choices) {
     // singular used for 1
     // special case for numbers ending in 2-4, except for 12-14 (2-4, 22-24, 32-34...)
     var singular = (value === 1);

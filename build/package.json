@@ -1,14 +1,14 @@
 {
-  "name": "Smart-PluralRules",
+  "name": "Smart-Plurals",
   "version": "0.9.0",
   "description": "See README.md",
-  "main": "src/Smart/PluralRules/Smart.PluralRules.core.js",
+  "main": "src/Smart/Plurals/Smart.Plurals.core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "http://www.github.com/scottrippey/Smart-PluralRules.git"
+    "url": "http://www.github.com/scottrippey/Smart-Plurals.git"
   },
   "author": "Scott.William.Rippey@gmail.com",
   "license": "MIT",

@@ -3,8 +3,8 @@
    * Slavic family
    *  Slovenian
    */
-  Smart.PluralRules.mapLanguageCodes('sl', 'slovenian');
-  Smart.PluralRules.defineRule('slovenian', function pluralRule_slovenian(value, choices) {
+  Smart.Plurals.mapLanguageCodes('sl', 'slovenian');
+  Smart.Plurals.defineRule('slovenian', function pluralRule_slovenian(value, choices) {
     // singular used for numbers ending in 01 (1, 101, 201...)
     // special case for numbers ending in 02 (2, 102, 202...)
     // special case for numbers ending in 03-04 (3-4, 103-104, 203-204...)

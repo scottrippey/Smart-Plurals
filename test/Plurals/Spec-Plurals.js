@@ -1,10 +1,10 @@
-describe("PluralRules", function() {
+describe("Plurals", function() {
 
   describe("Default rule", function() {
-    var defaultRule = Smart.PluralRules.getRule()
-      , english = Smart.PluralRules.getRule('en')
-      , spanish = Smart.PluralRules.getRule('es')
-      , russian = Smart.PluralRules.getRule('ru')
+    var defaultRule = Smart.Plurals.getRule()
+      , english = Smart.Plurals.getRule('en')
+      , spanish = Smart.Plurals.getRule('es')
+      , russian = Smart.Plurals.getRule('ru')
       ;
     it("the default rule should be English", function() {
       expect(defaultRule).toBe(english);
@@ -18,7 +18,7 @@ describe("PluralRules", function() {
   });
 
   describe("Choices Parameter", function() {
-    var english = Smart.PluralRules.getRule('en');
+    var english = Smart.Plurals.getRule('en');
     it("should return an item if choices is an array", function() {
       expect(english(1, [ 'singular', 'plural' ])).toBe('singular');
     });
@@ -42,7 +42,7 @@ describe("PluralRules", function() {
   });
 
   describe("English Rule", function() {
-    var english = Smart.PluralRules.getRule('en');
+    var english = Smart.Plurals.getRule('en');
     it("works with 2 choices", function() {
       expect(english(-1, [ 'singular', 'plural' ])).toBe('plural');
       expect(english(0, [ 'singular', 'plural' ])).toBe('plural');
