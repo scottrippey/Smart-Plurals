@@ -1,8 +1,8 @@
 {
   "name": "smart-plurals",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "See README.md",
-  "main": "src/Smart/Plurals/Smart.Plurals.core.js",
+  "main": "dist/Plurals/Smart.Plurals.all.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/scottrippey/Smart-Plurals.git"
