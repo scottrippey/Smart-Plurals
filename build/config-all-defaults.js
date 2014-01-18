@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   grunt.registerTask('test', [ 'jasmine' ]);
 
   grunt.mergeConfig({
-    pkg: grunt.file.readJSON('package.json')
+    pkg: function() { return grunt.file.readJSON('package.json'); }
     ,
     concat: {
       options: {}

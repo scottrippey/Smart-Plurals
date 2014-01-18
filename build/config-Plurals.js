@@ -1,7 +1,7 @@
 module.exports = function(grunt) {
 
-  grunt.registerTask('Plurals', [ 'concat:Plurals', 'uglify:Plurals', 'jshint:Plurals', 'jasmine:Plurals' ])
-  grunt.registerTask('Plurals-release', [ 'Plurals', 'concat:Plurals-release' ]);
+  grunt.registerTask('Plurals', [ 'concat:Plurals', 'uglify:Plurals', 'jshint:Plurals', 'jasmine:Plurals' ]);
+  grunt.registerTask('release', [ 'Plurals', 'concat:Plurals-release' ]);
 
   var src = 'src/Smart/Plurals'
     , dest = 'dist'
@@ -42,8 +42,8 @@ module.exports = function(grunt) {
       // Just copy to the releases folder:
       'Plurals-release': {
         files: [
-          { dest: releases + '/Smart.Plurals.all-<%= pkg.version %>.js', src: dest + '/Smart.Plurals.all.js' }
-          ,{ dest: releases + '/Smart.Plurals.en-<%= pkg.version %>.js', src: dest + '/Smart.Plurals.en.js' }
+          { dest: releases + '/Smart.Plurals.all-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.all.js' }
+          ,{ dest: releases + '/Smart.Plurals.en-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.en.js' }
         ]
       }
     }
