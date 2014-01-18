@@ -16,6 +16,7 @@
     "grunt-contrib-uglify": "~0.3.0",
     "grunt-contrib-jshint": "~0.8.0",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-contrib-jasmine": "~0.5.2"
+    "grunt-contrib-jasmine": "~0.5.2",
+    "grunt-release": "~0.6.0"
   }
 }
