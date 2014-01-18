@@ -2,9 +2,9 @@ module.exports = function(grunt) {
 
   grunt.registerTask('Plurals', [ 'concat:Plurals', 'uglify:Plurals', 'jshint:Plurals', 'jasmine:Plurals' ])
 
-  var src = '../src/Smart/Plurals'
-    , dest = '../dist/Plurals'
-    , test = '../test/Plurals';
+  var src = 'src/Smart/Plurals'
+    , dest = 'dist/Plurals'
+    , test = 'test/Plurals';
   var englishOnly = [
     src + '/Smart.Plurals.core.js'
     , src + '/Smart.Plurals.languages-english.js'
