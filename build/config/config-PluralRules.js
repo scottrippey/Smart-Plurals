@@ -2,23 +2,29 @@ module.exports = function(grunt) {
 
   grunt.registerTask('PluralRules', [ 'concat:PluralRules', 'uglify:PluralRules', 'jshint:PluralRules' ])
 
-  var srcSmartPluralRules = '../src/Smart/PluralRules', dest = '../dist/PluralRules';
+  var src = '../src/Smart/PluralRules'
+    , dest = '../dist/PluralRules'
+    , test = '../test/PluralRules';
   var englishOnly = [
-    srcSmartPluralRules + '/Smart.PluralRules.core.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-english.js'
+    src + '/Smart.PluralRules.core.js'
+    , src + '/Smart.PluralRules.languages-english.js'
   ];
   var allFiles = [
-    srcSmartPluralRules + '/Smart.PluralRules.core.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-english.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-czech.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-french.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-irish.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-latvian.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-lithuanian.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-polish.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-romanian.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-russian.js'
-    , srcSmartPluralRules + '/Smart.PluralRules.languages-slovenian.js'
+    src + '/Smart.PluralRules.core.js'
+    , src + '/Smart.PluralRules.languages-english.js'
+    , src + '/Smart.PluralRules.languages-czech.js'
+    , src + '/Smart.PluralRules.languages-french.js'
+    , src + '/Smart.PluralRules.languages-irish.js'
+    , src + '/Smart.PluralRules.languages-latvian.js'
+    , src + '/Smart.PluralRules.languages-lithuanian.js'
+    , src + '/Smart.PluralRules.languages-polish.js'
+    , src + '/Smart.PluralRules.languages-romanian.js'
+    , src + '/Smart.PluralRules.languages-russian.js'
+    , src + '/Smart.PluralRules.languages-slovenian.js'
+  ];
+
+  var allTests = [
+    test + '/**/*.js'
   ];
 
   grunt.mergeConfig({
@@ -43,6 +49,15 @@ module.exports = function(grunt) {
     jshint: {
       'PluralRules': {
         src: allFiles
+      }
+    }
+    ,
+    jasmine: {
+      'PluralRules': {
+        src: allFiles
+        , options: {
+          specs: allTests
+        }
       }
     }
     ,
