@@ -18,7 +18,7 @@
      * or even other forms, depending on the number of choices.
      *
      * @param {String} [languageCode] - Optional - a 2-letter or 4-letter language code, or the full ruleName.
-     * @returns {function(value, choices)}
+     * @returns {function({Number} value, {Number|Array} choices)}
      */
     getRule: function(languageCode) {
       // Calling this with no parameters will return the default:
@@ -63,7 +63,15 @@
     defineRule: function(ruleName, pluralRule) {
       ruleName = ruleName.toLowerCase();
 
-      this._rules[ruleName] = pluralRule;
+      var normalizedRule = function(value, choices) {
+        if (typeof choices !== 'number' && typeof choices.length === 'number') {
+          return choices[pluralRule(value, choices.length)];
+        } else {
+          return pluralRule(value, choices);
+        }
+      };
+
+      this._rules[ruleName] = normalizedRule;
     }
     ,
     /**
