@@ -1,0 +1,23 @@
+{
+  "name": "Smart-PluralRules",
+  "version": "0.9.0",
+  "description": "See README.md",
+  "main": "src/Smart/PluralRules/Smart.PluralRules.core.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://www.github.com/scottrippey/Smart-PluralRules.git"
+  },
+  "author": "Scott.William.Rippey@gmail.com",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "lodash": "~2.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.3.0",
+    "grunt-contrib-jshint": "~0.8.0",
+    "grunt-contrib-watch": "~0.5.3"
+  }
+}
