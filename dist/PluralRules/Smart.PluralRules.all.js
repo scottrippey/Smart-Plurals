@@ -5,25 +5,22 @@
     _codeMap: {} // Map of language codes to rule names
     , _rules: {} // Map of rule names to rules
 
-    , _defaultCode: 'en'
+    , _defaultCode: null
     , _defaultRule: null
-    , setDefault: function(languageCode) {
-      this._defaultCode = languageCode.toLowerCase();
-      this._defaultRule = null; // Lazy-loaded
-    }
 
-    , mapLanguageCodes: function(languageCodes, ruleName) {
-      languageCodes = ',' + languageCodes.toLowerCase() + ',';
-      ruleName = ruleName.toLowerCase();
-
-      this._codeMap[languageCodes] = ruleName;
-    }
-    , defineRule: function(ruleName, pluralRule) {
-      ruleName = ruleName.toLowerCase();
-
-      this._rules[ruleName] = pluralRule;
-    }
-    , getRule: function(languageCode) {
+    ,
+    /**
+     * Retrieves a plural rule, based on the supplied language code.
+     * If no languageCode is specified, the default rule will be returned.
+     *
+     * A plural rule is a function that takes in a value
+     * and determines whether it should be singular form, plural form,
+     * or even other forms, depending on the number of choices.
+     *
+     * @param {String} [languageCode] - Optional - a 2-letter or 4-letter language code, or the full ruleName.
+     * @returns {function(value, choices)}
+     */
+    getRule: function(languageCode) {
       // Calling this with no parameters will return the default:
       if (!languageCode) {
         return this._defaultRule || (this._defaultRule = this.getRule(this._defaultCode));
@@ -36,7 +33,7 @@
         return this._rules[languageCode];
       }
 
-      // Search for an "exact match" (either 2 letter code or 4 letter code)
+      // Search for an "exact match" (either 2-letter code or 4-letter code)
       var exactLanguageCode = ',' + languageCode + ',';
       for (var languageCodes in this._codeMap) {
         if (!this._codeMap.hasOwnProperty(languageCodes)) continue;
@@ -48,13 +45,52 @@
         }
       }
 
-      // Search for a "generic match" (2 letter code)
+      // Search for a "generic match" (2-letter code)
       if (languageCode.indexOf('-') !== -1) {
         var twoLetterCode = languageCode.split('-')[0];
         return this.getRule(twoLetterCode);
       } else {
         return null;
       }
+    }
+    ,
+    /**
+     * Defines a language rule.
+     *
+     * @param {String} ruleName - An arbitrary name to identify the rule
+     * @param {function(value, choices)} pluralRule - The rule; see getRule for a description.
+     */
+    defineRule: function(ruleName, pluralRule) {
+      ruleName = ruleName.toLowerCase();
+
+      this._rules[ruleName] = pluralRule;
+    }
+    ,
+    /**
+     * Associates a list of language codes with a rule.
+     *
+     * @param {String} languageCodes - A comma-separated list of 2-letter or 4-letter language codes
+     * @param {String} ruleName - The name of the rule to associate with these language codes
+     */
+    mapLanguageCodes: function(languageCodes, ruleName) {
+      languageCodes = ',' + languageCodes.toLowerCase() + ',';
+      ruleName = ruleName.toLowerCase();
+
+      this._codeMap[languageCodes] = ruleName;
+
+      if (!this._defaultCode) {
+        this._defaultCode = languageCodes.split(',')[1];
+      }
+    }
+    ,
+    /**
+     * Sets the default language rule.
+     *
+     * @param {String} languageCode - 2-letter or 4-letter language code
+     */
+    setDefault: function(languageCode) {
+      this._defaultCode = languageCode.toLowerCase();
+      this._defaultRule = null; // Lazy-loaded
     }
   };
 

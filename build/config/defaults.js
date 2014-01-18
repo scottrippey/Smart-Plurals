@@ -7,7 +7,9 @@ module.exports = function(grunt) {
     }
     ,
     uglify: {
-      options: {}
+      options: {
+        report: 'gzip'
+      }
     }
     ,
     jshint: {
