@@ -17,7 +17,9 @@ module.exports = function(grunt) {
     }
     ,
     watch: {
-      options: {}
+      options: {
+        atBegin: true
+      }
     }
   });
 };

@@ -5,6 +5,7 @@ module.exports = function(grunt) {
   var src = '../src', dest = '../dist';
   var files = [
     src + '/Smart/PluralRules/Smart.PluralRules.core.js'
+    , src + '/Smart/PluralRules/Smart.PluralRules.languages.js'
   ];
 
   grunt.mergeConfig({
@@ -24,7 +25,7 @@ module.exports = function(grunt) {
     ,
     watch: {
       'PluralRules': {
-        src: files
+        files: files
         , tasks: [ 'PluralRules' ]
       }
     }
