@@ -1,6 +1,6 @@
 {
   "name": "smart-plurals",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "description": "See README.md",
   "main": "dist/Plurals/Smart.Plurals.all.js",
   "repository": {

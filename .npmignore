@@ -1,5 +1,5 @@
 .idea/
 .git/
-dist/
+releases/
 node_modules/
 test/
