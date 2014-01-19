@@ -2,7 +2,7 @@
  * Slavic family
  *  Slovenian
  */
-Smart.Plurals.mapLanguageCodes('sl', 'slovenian');
+Smart.Plurals.defineLanguageCodes('sl', 'slovenian');
 Smart.Plurals.defineRule('slovenian', function pluralRule_slovenian(value, choices) {
   // singular used for numbers ending in 01 (1, 101, 201...)
   // special case for numbers ending in 02 (2, 102, 202...)

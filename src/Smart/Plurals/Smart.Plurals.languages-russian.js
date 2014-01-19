@@ -2,7 +2,7 @@
  * Slavic family
  *  Russian, Ukrainian, Serbian, Croatian
  */
-Smart.Plurals.mapLanguageCodes('ru,uk,sr,hr', 'russian');
+Smart.Plurals.defineLanguageCodes('ru,uk,sr,hr', 'russian');
 Smart.Plurals.defineRule('russian', function pluralRule_russian(value, choices) {
   // singular used for numbers ending in 1, except 11 (1, 21, 31...)
   // special case for numbers ending in 2-4, except 12-14 (2-4, 22-24, 32-34...)

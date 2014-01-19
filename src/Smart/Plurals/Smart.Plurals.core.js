@@ -58,10 +58,20 @@ if (typeof module === 'object') {
     }
     ,
     /**
+     * Sets the default language rule.
+     *
+     * @param {String} languageCode - 2-letter or 4-letter language code
+     */
+    setDefaultRule: function(languageCode) {
+      defaultCode = languageCode.toLowerCase();
+      defaultRule = null; // it's lazy loaded
+    }
+    ,
+    /**
      * Defines a language rule.
      *
-     * @param {String} ruleName - An arbitrary name to identify the rule
-     * @param {function(value, choices)} pluralRule - The rule; see getRule for a description.
+     * @param {String} ruleName - An arbitrary name to identify the rule.  Used by defineLanguageCodes
+     * @param {function({Number} value, {Number} choices)} pluralRule - The rule; see getRule for a description.
      */
     defineRule: function(ruleName, pluralRule) {
       ruleName = ruleName.toLowerCase();
@@ -78,30 +88,20 @@ if (typeof module === 'object') {
     }
     ,
     /**
-     * Associates a list of language codes with a rule.
+     * Associates a list of language codes with a named rule.
      *
      * @param {String} languageCodes - A comma-separated list of 2-letter or 4-letter language codes
      * @param {String} ruleName - The name of the rule to associate with these language codes
      */
-    mapLanguageCodes: function(languageCodes, ruleName) {
+    defineLanguageCodes: function(languageCodes, ruleName) {
       languageCodes = ',' + languageCodes.toLowerCase() + ',';
       ruleName = ruleName.toLowerCase();
 
       codeMap[languageCodes] = ruleName;
 
       if (!defaultCode) {
-        defaultCode = languageCodes.split(',')[1];
+        this.setDefaultRule(languageCodes.split(',')[1]);
       }
-    }
-    ,
-    /**
-     * Sets the default language rule.
-     *
-     * @param {String} languageCode - 2-letter or 4-letter language code
-     */
-    setDefault: function(languageCode) {
-      defaultCode = languageCode.toLowerCase();
-      defaultRule = null; // Lazy-loaded
     }
   };
 

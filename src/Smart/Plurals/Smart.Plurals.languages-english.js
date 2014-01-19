@@ -16,7 +16,7 @@
  * Turkic/Altaic family
  *  Turkish
  */
-Smart.Plurals.mapLanguageCodes('en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr', 'english');
+Smart.Plurals.defineLanguageCodes('en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr', 'english');
 Smart.Plurals.defineRule('english', function pluralRule_english(value, choices) {
   // singular used for 1
   // special cases for 0 and negative
