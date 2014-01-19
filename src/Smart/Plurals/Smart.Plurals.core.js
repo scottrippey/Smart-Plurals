@@ -1,8 +1,6 @@
 
-if (typeof Smart === 'undefined') {
-  Smart = {};
-}
-if (typeof module !== 'undefined') {
+Smart = this.Smart || {};
+if (typeof module === 'object') {
   module.exports = Smart;
 }
 
