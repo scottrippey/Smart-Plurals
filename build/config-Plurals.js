@@ -41,8 +41,8 @@ module.exports = function(grunt) {
       // Just copy to the releases folder:
       'Plurals-release': {
         files: [
-          { dest: releases + '/Smart.Plurals.all-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.all.js' }
-          ,{ dest: releases + '/Smart.Plurals.en-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.en.js' }
+          { dest: releases + '/<%= pkg().version %>/Smart.Plurals.all-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.all.js' }
+          ,{ dest: releases + '/<%= pkg().version %>/Smart.Plurals.en-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.en.js' }
         ]
       }
     }
