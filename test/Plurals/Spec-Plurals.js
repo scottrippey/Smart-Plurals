@@ -1,21 +1,56 @@
 describe("Plurals", function() {
 
-  describe("Default rule", function() {
-    var defaultRule = Smart.Plurals.getRule()
-      , english = Smart.Plurals.getRule('en')
+  describe("getRule", function() {
+    var english = Smart.Plurals.getRule('en')
       , spanish = Smart.Plurals.getRule('es')
       , russian = Smart.Plurals.getRule('ru')
-      ;
-    it("the default rule should be English", function() {
-      expect(defaultRule).toBe(english);
+      , defaultRule = Smart.Plurals.getRule();
+
+    it("accepts both language codes and rule names", function() {
+      var english2 = Smart.Plurals.getRule('english');
+      expect(english2).toBe(english);
     });
+    it("is case insensitive", function() {
+      var EN = Smart.Plurals.getRule('EN')
+        , ENGLISH = Smart.Plurals.getRule('ENGLISH');
+      expect(EN).toBe(english);
+      expect(ENGLISH).toBe(english);
+    });
+    it("accepts 4-letter codes", function() {
+      var EN_US = Smart.Plurals.getRule('en-US');
+      expect(EN_US).toBe(english);
+    });
+
+
     it("the English rule is the same as Spanish", function() {
       expect(english).toBe(spanish);
     });
     it("the English rule is NOT the same as Russian", function() {
       expect(russian).not.toBe(english);
     });
+    it("returns null if the language is not defined", function() {
+      var zz = Smart.Plurals.getRule('zz')
+        , asdf = Smart.Plurals.getRule('asdf');
+      expect(zz).toBe(null);
+      expect(asdf).toBe(null);
+    });
+
+    describe("Default rule", function() {
+      it("the default rule should be English", function() {
+        expect(defaultRule).toBe(english);
+      });
+      it("should change the default", function() {
+        Smart.Plurals.setDefaultRule('ru');
+        var newDefaultRule = Smart.Plurals.getRule();
+
+        expect(newDefaultRule).toBe(russian);
+
+        // Reset:
+        Smart.Plurals.setDefaultRule('en');
+      });
+    });
   });
+
 
   describe("Choices Parameter", function() {
     var english = Smart.Plurals.getRule('en');
