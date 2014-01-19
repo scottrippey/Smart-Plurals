@@ -42,7 +42,9 @@ module.exports = function(grunt) {
       'Plurals-release': {
         files: [
           { dest: releases + '/<%= pkg().version %>/Smart.Plurals.all-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.all.js' }
+          ,{ dest: releases + '/<%= pkg().version %>/Smart.Plurals.all-<%= pkg().version %>.min.js', src: dest + '/Smart.Plurals.all.min.js' }
           ,{ dest: releases + '/<%= pkg().version %>/Smart.Plurals.en-<%= pkg().version %>.js', src: dest + '/Smart.Plurals.en.js' }
+          ,{ dest: releases + '/<%= pkg().version %>/Smart.Plurals.en-<%= pkg().version %>.min.js', src: dest + '/Smart.Plurals.en.min.js' }
         ]
       }
     }
