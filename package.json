@@ -1,8 +1,17 @@
 {
   "name": "smart-plurals",
   "version": "1.0.1",
-  "description": "See README.md",
-  "main": "dist/Plurals/Smart.Plurals.all.js",
+  "main": "dist/Smart.Plurals.all.js",
+  "description": "A collection of language-specific rules for determining the plurality of a number",
+  "keywords": [
+    "plural",
+    "English, German, Dutch, Swedish, Danish, Norwegian, Faroese, Spanish, Portuguese, Italian, Bulgarian, Greek, Finnish, Estonian, Hebrew, Esperanto, Hungarian, Turkish, Czech, Slovak, French, Brazilian Portuguese, Gaeilge (Irish), Latvian, Lithuanian, Polish, Romanian, Russian, Ukrainian, Serbian, Croatian, Slovenian",
+    "localization",
+    "l10n",
+    "internationalization",
+    "i18n",
+    "vanilla javascript"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/scottrippey/Smart-Plurals.git"

@@ -1,8 +1,9 @@
 # Smart.Plurals
 
-This tiny JavaScript library provides an extensive list of language-specific rules for determining the plurality of a number.
-
+A collection of language-specific rules for determining the plurality of a number.
 These rules are designed to help with the localization of your application.
+
+The library is small and simple, minified and gzipped to under 500b.
 
 ## Examples
 
