@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  grunt.registerTask('Plurals', [ 'concat:Plurals', 'uglify:Plurals', 'jshint:Plurals', 'jasmine:Plurals' ]);
+  grunt.registerTask('Plurals', [ 'concat:PLURALS', 'uglify:PLURALS', 'jshint:PLURALS', 'jasmine:PLURALS' ]);
 
   var src = 'src/Smart/Plurals'
     , dest = 'dist'
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 
   grunt.mergeConfig({
     concat: {
-      'Plurals': {
+      'PLURALS': {
         files: [
           { dest: dest + '/Smart.Plurals.all.js', src: allFiles }
           , { dest: dest + '/Smart.Plurals.en.js', src: englishOnly }
@@ -39,18 +39,18 @@ module.exports = function(grunt) {
       }
       ,
       // Just copy to the releases folder:
-      'Plurals-release': {
+      'PLURALS-RELEASE': {
         files: [
-          { dest: releases + '/<%= pkg.version %>/Smart.Plurals.all-<%= pkg.version %>.js', src: dest + '/Smart.Plurals.all.js' }
-          ,{ dest: releases + '/<%= pkg.version %>/Smart.Plurals.all-<%= pkg.version %>.min.js', src: dest + '/Smart.Plurals.all.min.js' }
-          ,{ dest: releases + '/<%= pkg.version %>/Smart.Plurals.en-<%= pkg.version %>.js', src: dest + '/Smart.Plurals.en.js' }
-          ,{ dest: releases + '/<%= pkg.version %>/Smart.Plurals.en-<%= pkg.version %>.min.js', src: dest + '/Smart.Plurals.en.min.js' }
+          { dest: releases + '/v<%= pkg.version %>/Smart.Plurals.all-<%= pkg.version %>.js', src: dest + '/Smart.Plurals.all.js' }
+          ,{ dest: releases + '/v<%= pkg.version %>/Smart.Plurals.all-<%= pkg.version %>.min.js', src: dest + '/Smart.Plurals.all.min.js' }
+          ,{ dest: releases + '/v<%= pkg.version %>/Smart.Plurals.en-<%= pkg.version %>.js', src: dest + '/Smart.Plurals.en.js' }
+          ,{ dest: releases + '/v<%= pkg.version %>/Smart.Plurals.en-<%= pkg.version %>.min.js', src: dest + '/Smart.Plurals.en.min.js' }
         ]
       }
     }
     ,
     uglify: {
-      'Plurals': {
+      'PLURALS': {
         files: [
           { dest: dest + '/Smart.Plurals.all.min.js', src: allFiles }
           , { dest: dest + '/Smart.Plurals.en.min.js', src: englishOnly }
@@ -59,13 +59,13 @@ module.exports = function(grunt) {
     }
     ,
     jshint: {
-      'Plurals': {
+      'PLURALS': {
         src: allFiles
       }
     }
     ,
     jasmine: {
-      'Plurals': {
+      'PLURALS': {
         src: allFiles
         , options: {
           specs: allTests
@@ -74,7 +74,7 @@ module.exports = function(grunt) {
     }
     ,
     watch: {
-      'Plurals': {
+      'PLURALS': {
         files: allFiles
         , tasks: [ 'Plurals' ]
       }
