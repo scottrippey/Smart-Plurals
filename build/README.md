@@ -1,3 +1,6 @@
-Simply run `grunt` to build everything.
+Common commands:
 
-The `config` folder contains all the build configuration options.
+`grunt` - build everything
+`grunt watch` - build everything, and watch for changes
+`grunt bump` - increment the version number. Increments `:patch`, but you can also use `:minor` or `:major`.
+
