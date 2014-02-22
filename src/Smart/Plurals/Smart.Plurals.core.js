@@ -1,8 +1,6 @@
-
-Smart = this.Smart || {};
-if (typeof module === 'object') {
-  module.exports = Smart;
-}
+// Create namespace:
+if (typeof Smart !== 'object')
+  Smart = {};
 
 (function() {
 

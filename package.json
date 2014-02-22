@@ -1,7 +1,7 @@
 {
   "name": "smart-plurals",
-  "version": "1.0.2",
-  "main": "dist/Smart.Plurals.all.js",
+  "version": "1.0.3",
+  "main": "dist/NodeJS/NodeJS.Smart.Plurals.all.js",
   "description": "A collection of language-specific rules for determining the plurality of a number",
   "keywords": [
     "plural",

@@ -25,15 +25,6 @@ module.exports = function(grunt) {
   ];
 
   grunt.mergeConfig({
-    sources: {
-      Smart: {
-        Plurals: {
-          allFiles: allFiles
-          , englishOnly: englishOnly
-        }
-      }
-    }
-    ,
     concat: {
       'PLURALS': {
         files: [
