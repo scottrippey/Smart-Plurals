@@ -19,7 +19,7 @@ module.exports = function(grunt) {
       }
       ,
       'GIT-TAG': {
-        command: "git tag -a v<%= pkg.version %> -m 'Release v<%= pkg.version %>' "
+        command: "git tag -a v<%= pkg.version %> -m \"Release v<%= pkg.version %>\""
       }
       ,
       'GIT-PUSH': {
