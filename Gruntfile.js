@@ -8,6 +8,7 @@ module.exports = function(grunt) {
   require('./build/task-Plurals.js')(grunt);
   require('./build/task-AngularJS.js')(grunt);
   require('./build/task-NodeJS.js')(grunt);
+  require('./build/task-test.js')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');

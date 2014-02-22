@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  grunt.registerTask('Plurals', [ 'concat:PLURALS', 'uglify:PLURALS', 'jshint:PLURALS', 'jasmine:PLURALS' ]);
+  grunt.registerTask('Plurals', [ 'concat:PLURALS', 'uglify:PLURALS', 'jshint:PLURALS' ]);
 
   var englishOnly = [
     'src/Smart/Plurals/Smart.Plurals.core.js'
@@ -20,9 +20,6 @@ module.exports = function(grunt) {
     , 'src/Smart/Plurals/Smart.Plurals.languages-slovenian.js'
   ];
 
-  var allTests = [
-    'test/Plurals/Spec-Plurals.js'
-  ];
 
   grunt.mergeConfig({
     concat: {
@@ -46,15 +43,6 @@ module.exports = function(grunt) {
     jshint: {
       'PLURALS': {
         src: allFiles
-      }
-    }
-    ,
-    jasmine: {
-      'PLURALS': {
-        src: allFiles
-        , options: {
-          specs: allTests
-        }
       }
     }
     ,
