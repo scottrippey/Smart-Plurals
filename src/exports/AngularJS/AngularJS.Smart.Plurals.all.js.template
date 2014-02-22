@@ -1,0 +1,19 @@
+angular.module('smart', [])
+  .filter('plural', ['SmartPlurals', function(SmartPlurals) {
+    var pluralFilter = function(value, choices_) {
+      var choices = Array.prototype.slice.call(arguments, 1);
+      return SmartPlurals.getRule()(value, choices);
+    };
+    return pluralFilter;
+  }])
+  .factory('SmartPlurals', [function() {
+    var Smart = { };
+
+    /* <%= '*\/' %>
+
+    <%= utils.indent(grunt.file.read('dist/standalone/Smart.Plurals.all.js'), '    ') %>
+
+    /* */
+
+    return Smart.Plurals;
+  }]);

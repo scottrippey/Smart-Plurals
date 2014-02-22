@@ -1,5 +1,9 @@
 var Smart = {};
 
+/* <%= '*\/' %>
+
 <%= grunt.file.read('dist/standalone/Smart.Plurals.all.js') %>
+
+/* */
 
 module.exports = Smart;
