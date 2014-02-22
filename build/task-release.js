@@ -7,7 +7,7 @@ module.exports = function(grunt) {
   grunt.mergeConfig({
     copy: {
       'PLURALS-RELEASE': {
-        files: [{ expand: true, src: [ 'dist/**' ], dest: 'releases/v<%= pkg.version %>' }]
+        files: [{ expand: true, cwd: 'dist', src: [ '**' ], dest: 'releases/v<%= pkg.version %>' }]
       }
     }
     ,

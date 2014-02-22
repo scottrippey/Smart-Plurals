@@ -1,5 +1,7 @@
 var Smart = {};
 
+/* */
+
 // Create namespace:
 if (typeof Smart !== 'object')
   Smart = {};
@@ -275,5 +277,7 @@ Smart.Plurals.defineRule('slovenian', function pluralRule_slovenian(value, choic
   return singular ? 0 : two ? 1 : few ? 2 : 3;
 });
 
+
+/* */
 
 module.exports = Smart;
