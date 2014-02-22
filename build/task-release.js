@@ -1,8 +1,8 @@
 module.exports = function(grunt) {
 
-  grunt.registerTask('release', [ 'Plurals', 'copy:PLURALS-RELEASE' /*, 'shell:GIT-ADD-RELEASE' */ ]);
+  grunt.registerTask('release', [ 'Plurals', 'copy:PLURALS-RELEASE' ]);
 
-  grunt.registerTask('publish', [ 'shell:GIT-TAG', 'shell:GIT-PUSH', 'shell:NPM-PUBLISH' ]);
+  grunt.registerTask('tag', [ 'shell:GIT-TAG', 'shell:ECHO-TAG' ]);
 
   grunt.mergeConfig({
     copy: {
@@ -14,20 +14,16 @@ module.exports = function(grunt) {
     shell: {
       options: { stdout: true }
       ,
-      'GIT-ADD-RELEASE': {
-        command: "git add releases/v<%= pkg.version %>"
-      }
-      ,
       'GIT-TAG': {
         command: "git tag -a v<%= pkg.version %> -m \"Release v<%= pkg.version %>\""
       }
       ,
-      'GIT-PUSH': {
-        command: "git push origin --tags"
-      }
-      ,
-      'NPM-PUBLISH': {
-        command: "npm publish"
+      'ECHO-TAG': {
+        command: "ECHO " +
+          "                                                                                " +
+          "    To push the tags to GitHub and NPM, run the following commands:             " +
+          "        git push origin --tags                                                  " +
+          "        npm publish                                                             "
       }
     }
   });
