@@ -2,6 +2,7 @@ module.exports = function(grunt) {
   require('grunt-config-merge')(grunt);
 
   require('./build/default-options.js')(grunt);
+  require('./build/default-tasks.js')(grunt);
   require('./build/task-bump.js')(grunt);
   require('./build/task-release.js')(grunt);
   require('./build/task-Plurals.js')(grunt);
