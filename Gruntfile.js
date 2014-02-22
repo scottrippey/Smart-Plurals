@@ -1,10 +1,10 @@
 module.exports = function(grunt) {
-  require('./build/grunt.mergeConfig.js')(grunt);
+  require('grunt-config-merge')(grunt);
 
-  require('./build/config-all-defaults.js')(grunt);
-  require('./build/config-all-bump.js')(grunt);
-  require('./build/config-all-release.js')(grunt);
-  require('./build/config-Plurals.js')(grunt);
+  require('./build/default-options.js')(grunt);
+  require('./build/task-bump.js')(grunt);
+  require('./build/task-release.js')(grunt);
+  require('./build/task-Plurals.js')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
