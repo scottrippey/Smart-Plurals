@@ -25,21 +25,20 @@ module.exports = function(grunt) {
   ];
 
   grunt.mergeConfig({
+    sources: {
+      Smart: {
+        Plurals: {
+          allFiles: allFiles
+          , englishOnly: englishOnly
+        }
+      }
+    }
+    ,
     concat: {
       'PLURALS': {
         files: [
-          { dest: 'dist/Smart.Plurals.all.js', src: allFiles }
-          , { dest: 'dist/Smart.Plurals.en.js', src: englishOnly }
-        ]
-      }
-      ,
-      // Just copy to the releases folder:
-      'PLURALS-RELEASE': {
-        files: [
-          { dest: 'releases/v<%= pkg.version %>/Smart.Plurals.all-<%= pkg.version %>.js', src: 'dist/Smart.Plurals.all.js' }
-          ,{ dest: 'releases/v<%= pkg.version %>/Smart.Plurals.all-<%= pkg.version %>.min.js', src: 'dist/Smart.Plurals.all.min.js' }
-          ,{ dest: 'releases/v<%= pkg.version %>/Smart.Plurals.en-<%= pkg.version %>.js', src: 'dist/Smart.Plurals.en.js' }
-          ,{ dest: 'releases/v<%= pkg.version %>/Smart.Plurals.en-<%= pkg.version %>.min.js', src: 'dist/Smart.Plurals.en.min.js' }
+          { dest: 'dist/standalone/Smart.Plurals.all.js', src: allFiles }
+          , { dest: 'dist/standalone/Smart.Plurals.en.js', src: englishOnly }
         ]
       }
     }
@@ -47,8 +46,8 @@ module.exports = function(grunt) {
     uglify: {
       'PLURALS': {
         files: [
-          { dest: 'dist/Smart.Plurals.all.min.js', src: allFiles }
-          , { dest: 'dist/Smart.Plurals.en.min.js', src: englishOnly }
+          { dest: 'dist/standalone/Smart.Plurals.all.min.js', src: allFiles }
+          , { dest: 'dist/standalone/Smart.Plurals.en.min.js', src: englishOnly }
         ]
       }
     }
