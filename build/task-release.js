@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-  grunt.registerTask('release', [ 'Plurals', 'copy:PLURALS-RELEASE' ]);
+  grunt.registerTask('release', [ 'default', 'copy:PLURALS-RELEASE' ]);
 
   grunt.registerTask('tag', [ 'shell:GIT-TAG', 'shell:ECHO-TAG' ]);
 
