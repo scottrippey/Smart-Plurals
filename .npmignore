@@ -1,5 +1,5 @@
 .idea/
 .git/
-releases/
+bower_components/
 node_modules/
 test/
