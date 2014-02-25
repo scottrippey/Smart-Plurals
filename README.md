@@ -27,8 +27,46 @@ numbers ending in 2-4 (22, 23, 24) are "few", and all others are plural:
 ## Download
 
 This library is designed to be tiny, has no dependencies, and should be very easy to integrate into any application.
-You can download rules for all languages at [dist/Plurals/Smart.Plurals.all.js],
-or you can get just the English rule at [dist/Plurals/Smart.Plurals.all.js].
+This library comes in 3 flavors; `standalone`, `Angular`, and `Node`.
+
+### Standalone
+This standalone library exposes the API on the `Smart.Plurals` namespace.  It has no additional dependencies.
+
+Usage:
+
+```js
+var pluralRule = Smart.Plurals.getRule('en');
+```
+
+
+### Using with Node
+This is the same as the standalone build, but exports the entire Smart object.
+
+Usage:
+
+```js
+var Smart = require('smart-plurals');
+var pluralRule = Smart.Plurals.getRule('en');
+...
+```
+
+### Using with Angular
+This build exposes a `smart` module with a `SmartPlurals` service.
+It also includes a `plural` filter.
+
+Usage:
+
+```js
+angular.module('example', [ 'smart' ]).run(function(SmartPlurals) {
+    var pluralRule = SmartPlurals.getRule('en');
+    ...
+});
+```
+
+```handlebars
+<span> There {{ value | plural:"is":"are" }} {{ value }} {{ value | plural:"item":"items" }} remaining... </span>
+```
+
 
 ## Supported languages:
 
