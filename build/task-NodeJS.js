@@ -9,7 +9,7 @@ module.exports = function(grunt) {
           process: true
         }
         , files: [
-          { dest: 'dist/Smart.Plurals.node/Smart.Plurals.node-all.js', src: [ 'src/exports/Smart.Plurals.node/Smart.Plurals.node-all.js.template' ] }
+          { dest: 'dist/Smart.Plurals.node/Smart.Plurals.node-all.js', src: [ 'src/Smart.Plurals.node/Smart.Plurals.node-all.js.template' ] }
         ]
       }
     }

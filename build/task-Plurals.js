@@ -3,21 +3,21 @@ module.exports = function(grunt) {
   grunt.registerTask('Plurals', [ 'concat:PLURALS', 'uglify:PLURALS', 'jshint:PLURALS' ]);
 
   var englishOnly = [
-    'src/Smart/Plurals/Smart.Plurals.core.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-english.js'
+    'src/Smart.Plurals/Smart.Plurals.core.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-english.js'
   ];
   var allFiles = [
-    'src/Smart/Plurals/Smart.Plurals.core.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-english.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-czech.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-french.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-irish.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-latvian.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-lithuanian.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-polish.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-romanian.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-russian.js'
-    , 'src/Smart/Plurals/Smart.Plurals.languages-slovenian.js'
+    'src/Smart.Plurals/Smart.Plurals.core.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-english.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-czech.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-french.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-irish.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-latvian.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-lithuanian.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-polish.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-romanian.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-russian.js'
+    , 'src/Smart.Plurals/Smart.Plurals.languages-slovenian.js'
   ];
 
 

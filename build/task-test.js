@@ -9,7 +9,7 @@ module.exports = function(grunt) {
         ]
         , options: {
           specs: [
-            'test/Smart/**/*.js'
+            'test/Smart.Plurals/**/*.js'
           ]
         }
       }
