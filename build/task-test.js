@@ -5,7 +5,7 @@ module.exports = function(grunt) {
     jasmine: {
       'PLURALS': {
         src: [
-          'dist/standalone/Smart.Plurals.all.js'
+          'dist/Smart.Plurals/Smart.Plurals.all.js'
         ]
         , options: {
           specs: [
@@ -19,11 +19,11 @@ module.exports = function(grunt) {
           'bower_components/angular/angular.js'
           , 'bower_components/angular-mocks/angular-mocks.js'
 
-          , 'dist/AngularJS/AngularJS.Smart.Plurals.all.js'
+          , 'dist/Smart.Plurals.angular/Smart.Plurals.angular-all.js'
         ]
         , options: {
           specs: [
-            'test/exports/AngularJS/**/*.js'
+            'test/Smart.Plurals.angular/**/*.js'
           ]
         }
       }

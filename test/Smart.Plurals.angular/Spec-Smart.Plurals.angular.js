@@ -1,4 +1,4 @@
-describe('AngularJS', function() {
+describe('Smart.Plurals.angular', function() {
   describe('SmartPlurals service', function() {
     beforeEach(module('smart'));
 

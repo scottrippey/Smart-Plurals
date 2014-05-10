@@ -9,14 +9,14 @@ module.exports = function(grunt) {
           process: true
         }
         , files: [
-          { dest: 'dist/AngularJS/AngularJS.Smart.Plurals.all.js', src: [ 'src/exports/AngularJS/AngularJS.Smart.Plurals.all.js.template' ] }
+          { dest: 'dist/Smart.Plurals.angular/Smart.Plurals.angular-all.js', src: [ 'src/exports/Smart.Plurals.angular/Smart.Plurals.angular-all.js.template' ] }
         ]
       }
     }
     , uglify: {
       'ANGULARJS-MIN': {
         files: [
-          { dest: 'dist/AngularJS/AngularJS.Smart.Plurals.all.min.js', src: 'dist/AngularJS/AngularJS.Smart.Plurals.all.js' }
+          { dest: 'dist/Smart.Plurals.angular/Smart.Plurals.angular-all-min.js', src: 'dist/Smart.Plurals.angular/Smart.Plurals.angular-all.js' }
         ]
       }
     }

@@ -9,7 +9,7 @@ module.exports = function(grunt) {
           process: true
         }
         , files: [
-          { dest: 'dist/NodeJS/NodeJS.Smart.Plurals.all.js', src: [ 'src/exports/NodeJS/NodeJS.Smart.Plurals.all.js.template' ] }
+          { dest: 'dist/Smart.Plurals.node/Smart.Plurals.node-all.js', src: [ 'src/exports/Smart.Plurals.node/Smart.Plurals.node-all.js.template' ] }
         ]
       }
     }
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
     uglify: {
       'NODEJS-MIN': {
         files: [
-          { dest: 'dist/NodeJS/NodeJS.Smart.Plurals.all.min.js', src: 'dist/NodeJS/NodeJS.Smart.Plurals.all.js' }
+          { dest: 'dist/Smart.Plurals.node/Smart.Plurals.node-all-min.js', src: 'dist/Smart.Plurals.node/Smart.Plurals.node-all.js' }
         ]
       }
     }

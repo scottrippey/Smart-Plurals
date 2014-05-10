@@ -2,7 +2,7 @@ var Smart = {};
 
 /* <%= '*\/' %>
 
-<%= grunt.file.read('dist/standalone/Smart.Plurals.all.js') %>
+<%= grunt.file.read('dist/Smart.Plurals/Smart.Plurals.all.js') %>
 
 /* */
 

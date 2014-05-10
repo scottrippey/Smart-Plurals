@@ -25,8 +25,8 @@ module.exports = function(grunt) {
     concat: {
       'PLURALS': {
         files: [
-          { dest: 'dist/standalone/Smart.Plurals.all.js', src: allFiles }
-          , { dest: 'dist/standalone/Smart.Plurals.en.js', src: englishOnly }
+          { dest: 'dist/Smart.Plurals/Smart.Plurals.all.js', src: allFiles }
+          , { dest: 'dist/Smart.Plurals/Smart.Plurals.en.js', src: englishOnly }
         ]
       }
     }
@@ -34,8 +34,8 @@ module.exports = function(grunt) {
     uglify: {
       'PLURALS': {
         files: [
-          { dest: 'dist/standalone/Smart.Plurals.all.min.js', src: allFiles }
-          , { dest: 'dist/standalone/Smart.Plurals.en.min.js', src: englishOnly }
+          { dest: 'dist/Smart.Plurals/Smart.Plurals.all-min.js', src: allFiles }
+          , { dest: 'dist/Smart.Plurals/Smart.Plurals.en-min.js', src: englishOnly }
         ]
       }
     }
