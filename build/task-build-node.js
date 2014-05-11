@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-	grunt.registerTask('NodeJS', [ 'concat:NODEJS', 'uglify:NODEJS-MIN' ]);
+	grunt.registerTask('build-node', [ 'concat:NODEJS' ]);
 
 	grunt.mergeConfig({
 		concat: {

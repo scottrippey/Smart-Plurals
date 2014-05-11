@@ -1,6 +1,6 @@
 module.exports = function(grunt) {
 
-	grunt.registerTask('Plurals', [ 'concat:PLURALS', 'uglify:PLURALS', 'jshint:PLURALS' ]);
+	grunt.registerTask('build-Smart-Plurals', [ 'concat:PLURALS', 'uglify:PLURALS', 'jshint:PLURALS', 'jasmine:PLURALS' ]);
 
 	var englishOnly = [
 		'src/Smart.Plurals/Smart.Plurals.core.js'
@@ -22,6 +22,13 @@ module.exports = function(grunt) {
 
 
 	grunt.mergeConfig({
+		watch: {
+			'PLURALS': {
+				files: allFiles
+				, tasks: [ 'build-Smart-Plurals' ]
+			}
+		}
+		,
 		concat: {
 			'PLURALS': {
 				files: [
@@ -46,11 +53,18 @@ module.exports = function(grunt) {
 			}
 		}
 		,
-		watch: {
+		jasmine: {
 			'PLURALS': {
-				files: allFiles
-				, tasks: [ 'Plurals' ]
+				src: [
+					'dist/Smart.Plurals/Smart.Plurals.all.js'
+				]
+				, options: {
+					specs: [
+						'test/Smart.Plurals/**/*.js'
+					]
+				}
 			}
 		}
+
 	});
 };

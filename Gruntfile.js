@@ -5,10 +5,9 @@ module.exports = function(grunt) {
   require('./build/default-tasks.js')(grunt);
   require('./build/task-bump.js')(grunt);
   require('./build/task-release.js')(grunt);
-  require('./build/task-Plurals.js')(grunt);
-  require('./build/task-AngularJS.js')(grunt);
-  require('./build/task-NodeJS.js')(grunt);
-  require('./build/task-test.js')(grunt);
+  require('./build/task-build-Smart-Plurals.js')(grunt);
+  require('./build/task-build-angular.js')(grunt);
+  require('./build/task-build-node.js')(grunt);
 
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-copy');

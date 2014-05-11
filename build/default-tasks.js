@@ -1,3 +1,3 @@
 module.exports = function(grunt) {
-	grunt.registerTask('default', [ 'Plurals', 'NodeJS', 'AngularJS', 'test' ]);
+	grunt.registerTask('default', [ 'build-Smart-Plurals', 'build-node', 'build-angular' ]);
 };
