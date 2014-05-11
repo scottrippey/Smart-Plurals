@@ -1,17 +1,17 @@
 angular.module('smart', [])
-  .filter('plural', ['SmartPlurals', function(SmartPlurals) {
-    var pluralFilter = function(value, choices_) {
-      var choices = Array.prototype.slice.call(arguments, 1);
-      var rule = SmartPlurals.getRule();
-      var choice = rule(value, choices);
-      return choice;
-    };
-    return pluralFilter;
-  }])
-  .factory('SmartPlurals', [function() {
-    var Smart = { };
+	.filter('plural', ['SmartPlurals', function(SmartPlurals) {
+		var pluralFilter = function(value, choices_) {
+			var choices = Array.prototype.slice.call(arguments, 1);
+			var rule = SmartPlurals.getRule();
+			var choice = rule(value, choices);
+			return choice;
+		};
+		return pluralFilter;
+	}])
+	.factory('SmartPlurals', [function() {
+		var Smart = { };
 
-    // Embed the Smart.Plurals source: <%= '\n\n\n    ' + utils.indent(grunt.file.read('dist/Smart.Plurals/Smart.Plurals.all.js'), '    ') %>
+		// Embed the Smart.Plurals source: <%= '\n\n\n    ' + utils.indent(grunt.file.read('dist/Smart.Plurals/Smart.Plurals.all.js'), '    ') %>
 
-    return Smart.Plurals;
-  }]);
+		return Smart.Plurals;
+	}]);
