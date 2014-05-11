@@ -54,7 +54,7 @@ module.exports = function(grunt) {
 					'bower_components/angular/angular.js'
 					, 'bower_components/angular-mocks/angular-mocks.js'
 
-					, 'dist/Smart.Plurals.angular/Smart.Plurals.angular-all.js'
+					, 'dist/Smart.Plurals.angular/Smart.Plurals.angular-all-min.js'
 				]
 				, options: {
 					specs: [

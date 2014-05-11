@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 		jasmine: {
 			'PLURALS': {
 				src: [
-					'dist/Smart.Plurals/Smart.Plurals.all.js'
+					'dist/Smart.Plurals/Smart.Plurals.all-min.js'
 				]
 				, options: {
 					specs: [
