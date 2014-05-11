@@ -11,7 +11,7 @@ angular.module('smart', [])
 	.factory('SmartPlurals', [function() {
 		var Smart = { };
 
-		// Embed the Smart.Plurals source: <%= '\n\n\n    ' + utils.indent(grunt.file.read('dist/Smart.Plurals/Smart.Plurals.all.js'), '    ') %>
+		// Embed the Smart.Plurals source: <%= '\n\n\n		' + getSmartPluralsSourceCode('		') %>
 
 		return Smart.Plurals;
 	}]);
