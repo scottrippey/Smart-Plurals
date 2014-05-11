@@ -9,6 +9,7 @@ module.exports = function(grunt) {
 		uglify: {
 			options: {
 				report: 'gzip'
+				, compress: { hoist_vars: true }
 			}
 		}
 		,
