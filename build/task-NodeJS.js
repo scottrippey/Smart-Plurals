@@ -13,13 +13,5 @@ module.exports = function(grunt) {
 				]
 			}
 		}
-		,
-		uglify: {
-			'NODEJS-MIN': {
-				files: [
-					{ dest: 'dist/Smart.Plurals.node/Smart.Plurals.node-all-min.js', src: 'dist/Smart.Plurals.node/Smart.Plurals.node-all.js' }
-				]
-			}
-		}
 	});
 };
