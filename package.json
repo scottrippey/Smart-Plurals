@@ -1,6 +1,6 @@
 {
   "name": "smart-plurals",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "main": "dist/Smart.Plurals.node/Smart.Plurals.node-all.js",
   "description": "A collection of language-specific rules for determining the plurality of a number",
   "keywords": [
