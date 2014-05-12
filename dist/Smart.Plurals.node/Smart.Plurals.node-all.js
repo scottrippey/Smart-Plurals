@@ -9,8 +9,7 @@ if (typeof Smart !== 'object')
 
 (function() {
 
-	var codeMap = {} // Map of language codes to rule names
-		, rules = {} // Map of rule names to rules
+	var rules = {} // Map of language codes to rules
 		, defaultCode = null
 		, defaultRule = null;
 
@@ -32,32 +31,27 @@ if (typeof Smart !== 'object')
 				return defaultRule || (defaultRule = this.getRule(defaultCode));
 			}
 
-			languageCode = languageCode.toLowerCase();
+			// Normalize:
+			languageCode = ',' + languageCode.toLowerCase() + ',';
 
-			// You can look for a rule by name:
-			if (languageCode in rules) {
-				return rules[languageCode];
-			}
+			// Search for an "exact match":
+			for (var languageCodes in rules) {
+				if (!rules.hasOwnProperty(languageCodes)) continue;
 
-			// Search for an "exact match" (either 2-letter code or 4-letter code)
-			var exactLanguageCode = ',' + languageCode + ',';
-			for (var languageCodes in codeMap) {
-				if (!codeMap.hasOwnProperty(languageCodes)) continue;
-
-				var isExactMatch = (languageCodes.indexOf(exactLanguageCode) !== -1);
+				var isExactMatch = (languageCodes.indexOf(languageCode) !== -1);
 				if (isExactMatch) {
-					var ruleName = codeMap[languageCodes];
-					return rules[ruleName];
+					return rules[languageCodes];
 				}
 			}
 
-			// Search for a "generic match" (2-letter code)
-			if (languageCode.indexOf('-') !== -1) {
-				var twoLetterCode = languageCode.split('-')[0];
+			// If we've got a 4-letter code, search for a "generic match" (2-letter code):
+			var dash = languageCode.indexOf('-');
+			if (dash !== -1) {
+				var twoLetterCode = languageCode.substring(1, dash);
 				return this.getRule(twoLetterCode);
-			} else {
-				return null;
 			}
+
+			return null;
 		}
 		,
 		/**
@@ -73,38 +67,34 @@ if (typeof Smart !== 'object')
 		/**
 		 * Defines a language rule.
 		 *
-		 * @param {String} ruleName - An arbitrary name to identify the rule.  Used by defineLanguageCodes
-		 * @param {function({Number} value, {Number} choices)} pluralRule - The rule; see getRule for a description.
-		 */
-		defineRule: function(ruleName, pluralRule) {
-			ruleName = ruleName.toLowerCase();
-
-			var normalizedRule = function(value, choices) {
-				if (typeof choices !== 'number' && typeof choices.length === 'number') {
-					return choices[pluralRule(value, choices.length)];
-				} else {
-					return pluralRule(value, choices);
-				}
-			};
-
-			rules[ruleName] = normalizedRule;
-		}
-		,
-		/**
-		 * Associates a list of language codes with a named rule.
-		 *
 		 * @param {String} languageCodes - A comma-separated list of 2-letter or 4-letter language codes
-		 * @param {String} ruleName - The name of the rule to associate with these language codes
+		 * @param {function({Number} value, {Number} choices)|String} pluralRule - The rule; see getRule for a description.
 		 */
-		defineLanguageCodes: function(languageCodes, ruleName) {
+		defineRule: function(languageCodes, pluralRule) {
+			// Normalize:
 			languageCodes = ',' + languageCodes.toLowerCase() + ',';
-			ruleName = ruleName.toLowerCase();
 
-			codeMap[languageCodes] = ruleName;
+			var normalizedRule;
+			if (typeof pluralRule === 'string') {
+				// Allows for aliases
+				normalizedRule = this.getRule(pluralRule);
+			} else {
+				normalizedRule = function (value, choices) {
+					if (typeof choices === 'number') {
+						return pluralRule(value, choices);
+					} else if (typeof choices.length === 'number') {
+						return choices[pluralRule(value, choices.length)];
+					}
+				};
+			}
+
+			rules[languageCodes] = normalizedRule;
 
 			if (!defaultCode) {
 				this.setDefaultRule(languageCodes.split(',')[1]);
 			}
+
+			return normalizedRule;
 		}
 	};
 
@@ -128,26 +118,26 @@ if (typeof Smart !== 'object')
  * Turkic/Altaic family
  *  Turkish
  */
-Smart.Plurals.defineLanguageCodes('en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr', 'english');
-Smart.Plurals.defineRule('english', function pluralRule_english(value, choices) {
-	// singular used for 1
-	// special cases for 0 and negative
-	var singular = (value === 1);
-	if (choices === 2) return (singular ? 0 : 1);
+Smart.Plurals.defineRule('english,en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr',
+	function pluralRule_english(value, choices) {
+		// singular used for 1
+		// special cases for 0 and negative
+		var singular = (value === 1);
+		if (choices === 2) return (singular ? 0 : 1);
 
-	var zero = (value === 0);
-	if (choices === 3) return (zero ? 0 : singular ? 1 : 2);
+		var zero = (value === 0);
+		if (choices === 3) return (zero ? 0 : singular ? 1 : 2);
 
-	var negative = (value < 0);
-	return (negative ? 0 : zero ? 1 : singular ? 2 : 3);
-});
+		var negative = (value < 0);
+		return (negative ? 0 : zero ? 1 : singular ? 2 : 3);
+	}
+);
 
 /**
  * Slavic family
  *  Czech, Slovak
  */
-Smart.Plurals.defineLanguageCodes('cs,sk', 'czech');
-Smart.Plurals.defineRule('czech', function pluralRule_czech(value, choices) {
+Smart.Plurals.defineRule('czech,cs,sk', function pluralRule_czech(value, choices) {
 	// singular used for 1
 	// special case for 2-4
 	var singular = (value === 1);
@@ -161,8 +151,7 @@ Smart.Plurals.defineRule('czech', function pluralRule_czech(value, choices) {
  * Romanic family
  *  French, Brazilian Portuguese
  */
-Smart.Plurals.defineLanguageCodes('fr,pt-br', 'french');
-Smart.Plurals.defineRule('french', function pluralRule_french(value, choices) {
+Smart.Plurals.defineRule('french,fr,pt-br', function pluralRule_french(value, choices) {
 	// singular used for 0 and 1
 	var singular = (value === 0 || value === 1);
 	return (singular ? 0 : 1);
@@ -172,8 +161,7 @@ Smart.Plurals.defineRule('french', function pluralRule_french(value, choices) {
  * Celtic
  *  Gaeilge (Irish)
  */
-Smart.Plurals.defineLanguageCodes('ga', 'irish');
-Smart.Plurals.defineRule('irish', function pluralRule_irish(value, choices) {
+Smart.Plurals.defineRule('irish,ga', function pluralRule_irish(value, choices) {
 	// singular used for 1
 	// special case for 2
 	var singular = (value === 1);
@@ -187,8 +175,7 @@ Smart.Plurals.defineRule('irish', function pluralRule_irish(value, choices) {
  * Baltic family
  *  Latvian
  */
-Smart.Plurals.defineLanguageCodes('lv', 'latvian');
-Smart.Plurals.defineRule('latvian', function pluralRule_latvian(value, choices) {
+Smart.Plurals.defineRule('latvian,lv', function pluralRule_latvian(value, choices) {
 	// singular used for 1, 21, 31, 41... -- but not 11, 111, 211, 311, 411...
 	// special case for 0
 	var singular = (value % 10 === 1 && value % 100 != 11);
@@ -202,8 +189,7 @@ Smart.Plurals.defineRule('latvian', function pluralRule_latvian(value, choices) 
  * Baltic family
  *  Lithuanian
  */
-Smart.Plurals.defineLanguageCodes('lt', 'lithuanian');
-Smart.Plurals.defineRule('lithuanian', function pluralRule_lithuanian(value, choices) {
+Smart.Plurals.defineRule('lithuanian,lt', function pluralRule_lithuanian(value, choices) {
 	// singular used for numbers ending in 1 (1, 21, 31, 41...)
 	// special case for numbers ending in 12-19 (12-19, 112-119, 212-219...)
 	var singular = (value % 10 === 1 && value % 100 != 11);
@@ -217,8 +203,7 @@ Smart.Plurals.defineRule('lithuanian', function pluralRule_lithuanian(value, cho
  * Slavic family
  *  Polish
  */
-Smart.Plurals.defineLanguageCodes('pl', 'polish');
-Smart.Plurals.defineRule('polish', function pluralRule_polish(value, choices) {
+Smart.Plurals.defineRule('polish,pl', function pluralRule_polish(value, choices) {
 	// singular used for 1
 	// special case for numbers ending in 2-4, except for 12-14 (2-4, 22-24, 32-34...)
 	var singular = (value === 1);
@@ -232,8 +217,7 @@ Smart.Plurals.defineRule('polish', function pluralRule_polish(value, choices) {
  * Romanic family
  *  Romanian
  */
-Smart.Plurals.defineLanguageCodes('ro', 'romanian');
-Smart.Plurals.defineRule('romanian', function pluralRule_romanian(value, choices) {
+Smart.Plurals.defineRule('romanian,ro', function pluralRule_romanian(value, choices) {
 	// singular used for 1
 	// special case for 0 and numbers ending in 01-19 (0, 2-19, 101-119, 201-219...)
 	var singular = (value === 1);
@@ -247,8 +231,7 @@ Smart.Plurals.defineRule('romanian', function pluralRule_romanian(value, choices
  * Slavic family
  *  Russian, Ukrainian, Serbian, Croatian
  */
-Smart.Plurals.defineLanguageCodes('ru,uk,sr,hr', 'russian');
-Smart.Plurals.defineRule('russian', function pluralRule_russian(value, choices) {
+Smart.Plurals.defineRule('russian,ru,uk,sr,hr', function pluralRule_russian(value, choices) {
 	// singular used for numbers ending in 1, except 11 (1, 21, 31...)
 	// special case for numbers ending in 2-4, except 12-14 (2-4, 22-24, 32-34...)
 	// numbers ending in 11-14 use plural (11-14, 111-114, 211-214...)
@@ -263,8 +246,7 @@ Smart.Plurals.defineRule('russian', function pluralRule_russian(value, choices) 
  * Slavic family
  *  Slovenian
  */
-Smart.Plurals.defineLanguageCodes('sl', 'slovenian');
-Smart.Plurals.defineRule('slovenian', function pluralRule_slovenian(value, choices) {
+Smart.Plurals.defineRule('slovenian,sl', function pluralRule_slovenian(value, choices) {
 	// singular used for numbers ending in 01 (1, 101, 201...)
 	// special case for numbers ending in 02 (2, 102, 202...)
 	// special case for numbers ending in 03-04 (3-4, 103-104, 203-204...)

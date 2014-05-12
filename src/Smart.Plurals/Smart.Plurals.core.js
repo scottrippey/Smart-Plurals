@@ -4,8 +4,7 @@ if (typeof Smart !== 'object')
 
 (function() {
 
-	var codeMap = {} // Map of language codes to rule names
-		, rules = {} // Map of rule names to rules
+	var rules = {} // Map of language codes to rules
 		, defaultCode = null
 		, defaultRule = null;
 
@@ -27,32 +26,27 @@ if (typeof Smart !== 'object')
 				return defaultRule || (defaultRule = this.getRule(defaultCode));
 			}
 
-			languageCode = languageCode.toLowerCase();
+			// Normalize:
+			languageCode = ',' + languageCode.toLowerCase() + ',';
 
-			// You can look for a rule by name:
-			if (languageCode in rules) {
-				return rules[languageCode];
-			}
+			// Search for an "exact match":
+			for (var languageCodes in rules) {
+				if (!rules.hasOwnProperty(languageCodes)) continue;
 
-			// Search for an "exact match" (either 2-letter code or 4-letter code)
-			var exactLanguageCode = ',' + languageCode + ',';
-			for (var languageCodes in codeMap) {
-				if (!codeMap.hasOwnProperty(languageCodes)) continue;
-
-				var isExactMatch = (languageCodes.indexOf(exactLanguageCode) !== -1);
+				var isExactMatch = (languageCodes.indexOf(languageCode) !== -1);
 				if (isExactMatch) {
-					var ruleName = codeMap[languageCodes];
-					return rules[ruleName];
+					return rules[languageCodes];
 				}
 			}
 
-			// Search for a "generic match" (2-letter code)
-			if (languageCode.indexOf('-') !== -1) {
-				var twoLetterCode = languageCode.split('-')[0];
+			// If we've got a 4-letter code, search for a "generic match" (2-letter code):
+			var dash = languageCode.indexOf('-');
+			if (dash !== -1) {
+				var twoLetterCode = languageCode.substring(1, dash);
 				return this.getRule(twoLetterCode);
-			} else {
-				return null;
 			}
+
+			return null;
 		}
 		,
 		/**
@@ -68,38 +62,34 @@ if (typeof Smart !== 'object')
 		/**
 		 * Defines a language rule.
 		 *
-		 * @param {String} ruleName - An arbitrary name to identify the rule.  Used by defineLanguageCodes
-		 * @param {function({Number} value, {Number} choices)} pluralRule - The rule; see getRule for a description.
-		 */
-		defineRule: function(ruleName, pluralRule) {
-			ruleName = ruleName.toLowerCase();
-
-			var normalizedRule = function(value, choices) {
-				if (typeof choices !== 'number' && typeof choices.length === 'number') {
-					return choices[pluralRule(value, choices.length)];
-				} else {
-					return pluralRule(value, choices);
-				}
-			};
-
-			rules[ruleName] = normalizedRule;
-		}
-		,
-		/**
-		 * Associates a list of language codes with a named rule.
-		 *
 		 * @param {String} languageCodes - A comma-separated list of 2-letter or 4-letter language codes
-		 * @param {String} ruleName - The name of the rule to associate with these language codes
+		 * @param {function({Number} value, {Number} choices)|String} pluralRule - The rule; see getRule for a description.
 		 */
-		defineLanguageCodes: function(languageCodes, ruleName) {
+		defineRule: function(languageCodes, pluralRule) {
+			// Normalize:
 			languageCodes = ',' + languageCodes.toLowerCase() + ',';
-			ruleName = ruleName.toLowerCase();
 
-			codeMap[languageCodes] = ruleName;
+			var normalizedRule;
+			if (typeof pluralRule === 'string') {
+				// Allows for aliases
+				normalizedRule = this.getRule(pluralRule);
+			} else {
+				normalizedRule = function (value, choices) {
+					if (typeof choices === 'number') {
+						return pluralRule(value, choices);
+					} else if (typeof choices.length === 'number') {
+						return choices[pluralRule(value, choices.length)];
+					}
+				};
+			}
+
+			rules[languageCodes] = normalizedRule;
 
 			if (!defaultCode) {
 				this.setDefaultRule(languageCodes.split(',')[1]);
 			}
+
+			return normalizedRule;
 		}
 	};
 

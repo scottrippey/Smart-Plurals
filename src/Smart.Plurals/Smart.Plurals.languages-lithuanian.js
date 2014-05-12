@@ -2,8 +2,7 @@
  * Baltic family
  *  Lithuanian
  */
-Smart.Plurals.defineLanguageCodes('lt', 'lithuanian');
-Smart.Plurals.defineRule('lithuanian', function pluralRule_lithuanian(value, choices) {
+Smart.Plurals.defineRule('lithuanian,lt', function pluralRule_lithuanian(value, choices) {
 	// singular used for numbers ending in 1 (1, 21, 31, 41...)
 	// special case for numbers ending in 12-19 (12-19, 112-119, 212-219...)
 	var singular = (value % 10 === 1 && value % 100 != 11);

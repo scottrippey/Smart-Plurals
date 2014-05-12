@@ -2,8 +2,7 @@
  * Slavic family
  *  Czech, Slovak
  */
-Smart.Plurals.defineLanguageCodes('cs,sk', 'czech');
-Smart.Plurals.defineRule('czech', function pluralRule_czech(value, choices) {
+Smart.Plurals.defineRule('czech,cs,sk', function pluralRule_czech(value, choices) {
 	// singular used for 1
 	// special case for 2-4
 	var singular = (value === 1);

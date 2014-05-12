@@ -20,8 +20,7 @@ angular.module('smart', [])
 		
 		(function() {
 		
-			var codeMap = {} // Map of language codes to rule names
-				, rules = {} // Map of rule names to rules
+			var rules = {} // Map of language codes to rules
 				, defaultCode = null
 				, defaultRule = null;
 		
@@ -43,32 +42,27 @@ angular.module('smart', [])
 						return defaultRule || (defaultRule = this.getRule(defaultCode));
 					}
 		
-					languageCode = languageCode.toLowerCase();
+					// Normalize:
+					languageCode = ',' + languageCode.toLowerCase() + ',';
 		
-					// You can look for a rule by name:
-					if (languageCode in rules) {
-						return rules[languageCode];
-					}
+					// Search for an "exact match":
+					for (var languageCodes in rules) {
+						if (!rules.hasOwnProperty(languageCodes)) continue;
 		
-					// Search for an "exact match" (either 2-letter code or 4-letter code)
-					var exactLanguageCode = ',' + languageCode + ',';
-					for (var languageCodes in codeMap) {
-						if (!codeMap.hasOwnProperty(languageCodes)) continue;
-		
-						var isExactMatch = (languageCodes.indexOf(exactLanguageCode) !== -1);
+						var isExactMatch = (languageCodes.indexOf(languageCode) !== -1);
 						if (isExactMatch) {
-							var ruleName = codeMap[languageCodes];
-							return rules[ruleName];
+							return rules[languageCodes];
 						}
 					}
 		
-					// Search for a "generic match" (2-letter code)
-					if (languageCode.indexOf('-') !== -1) {
-						var twoLetterCode = languageCode.split('-')[0];
+					// If we've got a 4-letter code, search for a "generic match" (2-letter code):
+					var dash = languageCode.indexOf('-');
+					if (dash !== -1) {
+						var twoLetterCode = languageCode.substring(1, dash);
 						return this.getRule(twoLetterCode);
-					} else {
-						return null;
 					}
+		
+					return null;
 				}
 				,
 				/**
@@ -84,38 +78,34 @@ angular.module('smart', [])
 				/**
 				 * Defines a language rule.
 				 *
-				 * @param {String} ruleName - An arbitrary name to identify the rule.  Used by defineLanguageCodes
-				 * @param {function({Number} value, {Number} choices)} pluralRule - The rule; see getRule for a description.
-				 */
-				defineRule: function(ruleName, pluralRule) {
-					ruleName = ruleName.toLowerCase();
-		
-					var normalizedRule = function(value, choices) {
-						if (typeof choices !== 'number' && typeof choices.length === 'number') {
-							return choices[pluralRule(value, choices.length)];
-						} else {
-							return pluralRule(value, choices);
-						}
-					};
-		
-					rules[ruleName] = normalizedRule;
-				}
-				,
-				/**
-				 * Associates a list of language codes with a named rule.
-				 *
 				 * @param {String} languageCodes - A comma-separated list of 2-letter or 4-letter language codes
-				 * @param {String} ruleName - The name of the rule to associate with these language codes
+				 * @param {function({Number} value, {Number} choices)|String} pluralRule - The rule; see getRule for a description.
 				 */
-				defineLanguageCodes: function(languageCodes, ruleName) {
+				defineRule: function(languageCodes, pluralRule) {
+					// Normalize:
 					languageCodes = ',' + languageCodes.toLowerCase() + ',';
-					ruleName = ruleName.toLowerCase();
 		
-					codeMap[languageCodes] = ruleName;
+					var normalizedRule;
+					if (typeof pluralRule === 'string') {
+						// Allows for aliases
+						normalizedRule = this.getRule(pluralRule);
+					} else {
+						normalizedRule = function (value, choices) {
+							if (typeof choices === 'number') {
+								return pluralRule(value, choices);
+							} else if (typeof choices.length === 'number') {
+								return choices[pluralRule(value, choices.length)];
+							}
+						};
+					}
+		
+					rules[languageCodes] = normalizedRule;
 		
 					if (!defaultCode) {
 						this.setDefaultRule(languageCodes.split(',')[1]);
 					}
+		
+					return normalizedRule;
 				}
 			};
 		
@@ -139,19 +129,20 @@ angular.module('smart', [])
 		 * Turkic/Altaic family
 		 *  Turkish
 		 */
-		Smart.Plurals.defineLanguageCodes('en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr', 'english');
-		Smart.Plurals.defineRule('english', function pluralRule_english(value, choices) {
-			// singular used for 1
-			// special cases for 0 and negative
-			var singular = (value === 1);
-			if (choices === 2) return (singular ? 0 : 1);
+		Smart.Plurals.defineRule('english,en,de,nl,sv,da,no,nn,nb,fo,es,pt,it,bg,el,fi,et,he,eo,hu,tr',
+			function pluralRule_english(value, choices) {
+				// singular used for 1
+				// special cases for 0 and negative
+				var singular = (value === 1);
+				if (choices === 2) return (singular ? 0 : 1);
 		
-			var zero = (value === 0);
-			if (choices === 3) return (zero ? 0 : singular ? 1 : 2);
+				var zero = (value === 0);
+				if (choices === 3) return (zero ? 0 : singular ? 1 : 2);
 		
-			var negative = (value < 0);
-			return (negative ? 0 : zero ? 1 : singular ? 2 : 3);
-		});
+				var negative = (value < 0);
+				return (negative ? 0 : zero ? 1 : singular ? 2 : 3);
+			}
+		);
 		
 
 		return Smart.Plurals;

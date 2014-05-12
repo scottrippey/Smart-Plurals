@@ -2,8 +2,7 @@
  * Celtic
  *  Gaeilge (Irish)
  */
-Smart.Plurals.defineLanguageCodes('ga', 'irish');
-Smart.Plurals.defineRule('irish', function pluralRule_irish(value, choices) {
+Smart.Plurals.defineRule('irish,ga', function pluralRule_irish(value, choices) {
 	// singular used for 1
 	// special case for 2
 	var singular = (value === 1);
