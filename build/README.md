@@ -15,9 +15,9 @@ Grunt tasks:
 Manually commit the `releases` folder to Git.
 Push these changes to GitHub.
 
-To update NPM:
-Run `npm publish`
+To update NPM:  
+Run `npm publish`  
 
-To update Bower:
-`grunt tag` - tags Git with the current version
-Run `git push origin --tags`
+To update Bower:  
+`grunt tag` (adds a Git tag with the current version)  
+`git push origin --tags` (Bower automatically sees the latest version)  
