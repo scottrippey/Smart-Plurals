@@ -10,19 +10,20 @@ The library is small and simple, minified and gzipped to under 500b.
 For example, English has 2 plural forms - 1 is singular, all other values are plural:
 
     var english = Smart.Plurals.getRule('en');
-    english(0, [ 'singular', 'plural'  ]); // returns 'plural'
-    english(1, [ 'singular', 'plural'  ]); // returns 'singular'
-    english(2, [ 'singular', 'plural'  ]); // returns 'plural'
+    var dict = [ 'singular', 'plural' ];
+    english(0, dict); // returns 'plural'
+    english(1, dict); // returns 'singular'
+    english(2, dict); // returns 'plural'
 
 However, many languages have different rules, and some even have 3 or 4 different plural forms.
 For example, Russian has 3 plural forms - numbers ending with 1 (such as 21, 31, 41) are singular;
 numbers ending in 2-4 (22, 23, 24) are "few", and all others are plural:
 
-    // (TODO: Improve this example with actual Russian words)
     var russian = Smart.Plurals.getRule('ru');
-    russian(91, [ 'singular', 'few', 'plural' ]); // returns 'singular'
-    russian(94, [ 'singular', 'few', 'plural' ]); // returns 'few'
-    russian(99, [ 'singular', 'few', 'plural' ]); // returns 'plural'
+    var dict = [ 'арбуз', 'арбуза', 'арбузов' ]
+    russian(1, dict); // returns 'арбуз'
+    russian(2, dict); // returns 'арбуза'
+    russian(12, dict); // returns 'арбузов'
 
 ## Download
 
